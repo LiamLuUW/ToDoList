@@ -30,7 +30,6 @@ export const actionCreators = {
 const initial_state = [];
 
 export const reducer = (state = initial_state, action) => {
-  //const { items } = state;
   console.log(state);
 
   switch (action.type) {
@@ -55,6 +54,9 @@ export const reducer = (state = initial_state, action) => {
         }
         return item;
       })
+
+    case types.REMOVE:
+      
     default:
       return state;
   }
