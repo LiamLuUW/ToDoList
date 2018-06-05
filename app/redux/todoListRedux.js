@@ -1,10 +1,11 @@
-import {Alert} from 'react-native';
+import { Alert } from "react-native";
 
 // The types of actions that you can dispatch to modify the state of the store
 export const types = {
   ADD: "ADD",
   REMOVE: "REMOVE",
-  COMPLETE: "COMPLETE"
+  COMPLETE: "COMPLETE",
+  REMOVEALL: "REMOVEALL"
 };
 
 export const VisibilityFilters = {
@@ -26,6 +27,10 @@ export const actionCreators = {
 
   completeItem: index => {
     return { type: types.COMPLETE, id: index };
+  },
+
+  removeAllComplete: () => {
+    return { type: types.REMOVEALL };
   }
 };
 
@@ -55,9 +60,12 @@ export const reducer = (state = initial_state, action) => {
       });
 
     case types.REMOVE:
-      const s = state.filter((item) => action.id != item.id);
+      const s = state.filter(item => action.id != item.id);
       return s;
-    
+
+    case types.REMOVEALL:
+    Alert.alert("I am here");
+      return state.filter(item => item.completed === false);
     default:
       return state;
   }

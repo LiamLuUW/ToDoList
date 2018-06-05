@@ -17,9 +17,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => (console.log(state),{
-  items: state
-});
+const mapStateToProps = state => (
+  console.log(state),
+  {
+    items: state
+  }
+);
 
 class App extends Component {
   // static propTypes = {
@@ -39,9 +42,14 @@ class App extends Component {
   };
 
   onDeleteToDo = index => {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     dispatch(actionCreators.removeItem(index));
-  }
+  };
+
+  onFooterClicked = () => {
+    const { dispatch } = this.props;
+    dispatch(actionCreators.removeAllComplete());
+  };
 
   render() {
     const { items } = this.props;
@@ -58,11 +66,13 @@ class App extends Component {
             <List
               list={items}
               onItemComplete={this.onItemComplete.bind(this)}
-              onRemoveItem = {this.onDeleteToDo.bind(this)}
+              onRemoveItem={this.onDeleteToDo.bind(this)}
             />
           </ScrollView>
         </View>
-        <Footer>Remove Complete Items</Footer>
+        <Footer removeComplete={this.onFooterClicked}>
+          Remove Complete Items
+        </Footer>
       </View>
     );
   }

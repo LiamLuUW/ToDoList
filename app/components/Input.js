@@ -30,8 +30,7 @@ export default class Input extends Component {
     const {text} = this.state
     if(!text)return;
     addToDo(text);
-    //alert("Saved successfully!")
-    
+    this.setState({text: ""});    
   }
 
   render() {

@@ -25,7 +25,7 @@ export default class List extends Component {
     var swipeButtons = [
       {
         text: "Delete",
-        underlayColor: "red",
+        color: "red",
         onPress: ()=>{this.deleteClicked(i)}
       }
     ];

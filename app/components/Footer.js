@@ -23,7 +23,11 @@ export default class Footer extends Component {
     return(
       <View>
       <View style = {styles.line}/>
-      <TouchableOpacity style={styles.footContainer}>
+      <TouchableOpacity style={styles.footContainer} onPress={()=>
+      {
+        const {removeComplete} = this.props;
+        removeComplete();
+      }}>
         <Text style={styles.footer}>{children}</Text>
       </TouchableOpacity>
       </View>
