@@ -1,3 +1,5 @@
+import {Alert} from 'react-native';
+
 // The types of actions that you can dispatch to modify the state of the store
 export const types = {
   ADD: "ADD",
@@ -38,25 +40,24 @@ export const reducer = (state = initial_state, action) => {
       var newItem = {
         id: action.id,
         text: payload,
-        completed: false,
+        completed: false
       };
-      return [
-        ...state,
-        newItem
-      ];
+      return [...state, newItem];
     case types.COMPLETE:
-      return state.map(item =>{
+      return state.map(item => {
         if (item.id === action.id) {
           return {
             ...item,
-            completed: !item.completed,
-          }
+            completed: !item.completed
+          };
         }
         return item;
-      })
+      });
 
     case types.REMOVE:
-      
+      const s = state.filter((item) => action.id != item.id);
+      return s;
+    
     default:
       return state;
   }

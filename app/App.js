@@ -38,6 +38,11 @@ class App extends Component {
     dispatch(actionCreators.completeItem(index));
   };
 
+  onDeleteToDo = index => {
+    const {dispatch} = this.props;
+    dispatch(actionCreators.removeItem(index));
+  }
+
   render() {
     const { items } = this.props;
     //console.log(items);
@@ -53,6 +58,7 @@ class App extends Component {
             <List
               list={items}
               onItemComplete={this.onItemComplete.bind(this)}
+              onRemoveItem = {this.onDeleteToDo.bind(this)}
             />
           </ScrollView>
         </View>
